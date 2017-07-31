@@ -1,0 +1,126 @@
+﻿@using BilgeAdamGuney.Models
+@model MemberSignUpModel
+@{
+    ViewBag.Title = "SignUp";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="content">
+    <!--login-->
+    <div class="login">
+        <div class="main-agileits">
+            <div class="form-w3agile form1">
+                <h2>Hesap Oluştur</h2>
+                <p>Yeni misin? Aşağıdan hesap oluşturabilirsin.</p>
+                @if(TempData["ExceptionMessage"]!=null)
+                {
+                <div class="alert alert-danger">
+                    @TempData["ExceptionMessage"]
+                </div>
+                }
+                @using (Html.BeginForm("SignUp", "Member", FormMethod.Post, new { @id = "create1_form" }))
+                {
+                    <div class="form-group">
+                        @Html.TextBoxFor(m => m.FirstName, new { @placeholder = "Adınız", @class = "form-control" })
+                        @if (ViewData.ModelState["FirstName"] != null && ViewData.ModelState["FirstName"].Errors.Any())
+                        {
+                            <div class="alert alert-danger">
+                                @Html.ValidationMessage("FirstName")
+                            </div>
+                        }
+                    </div>
+                    <div class="form-group">
+                        @Html.TextBoxFor(m => m.LastName, new { @placeholder = "Soyadınız", @class = "form-control" })
+                        @if (ViewData.ModelState["LastName"] != null && ViewData.ModelState["LastName"].Errors.Any())
+                        {
+                            <div class="alert alert-danger">
+                                @Html.ValidationMessage("LastName")
+                            </div>
+                        }
+                    </div>
+                    <div class="form-group">
+                        @Html.TextBoxFor(m => m.Email, new { @placeholder = "Email", @class = "form-control" })
+                        @if ((ViewData.ModelState["EmailLength"] != null && ViewData.ModelState["EmailLength"].Errors.Any())|| (ViewData.ModelState["EmailFormat"] != null && ViewData.ModelState["EmailFormat"].Errors.Any()))
+                        {
+                            <div class="alert alert-danger">
+                                @Html.ValidationMessage("EmailLength")
+                                @Html.ValidationMessage("EmailFormat")
+                            </div>
+                        }
+                    </div>
+                    <div class="form-group">
+                        @Html.PasswordFor(m => m.Password, new { @placeholder = "Şifreniz", @class = "form-control" })          
+                        @if ((ViewData.ModelState["Password"] != null && ViewData.ModelState["Password"].Errors.Any())|| (ViewData.ModelState["PasswordsEquals"] != null && ViewData.ModelState["PasswordsEquals"].Errors.Any()))
+                        {
+                            <div class="alert alert-danger">
+                                @Html.ValidationMessage("Password")
+                                @Html.ValidationMessage("PasswordsEquals")
+                            </div>
+                        }
+                    </div>
+                    <div class="confirm-password form-group">
+                        @Html.PasswordFor(m => m.PasswordConfirm, new { @placeholder = "Şifreniz Tekrar", @class = "form-control" })
+                    </div>
+                    <div class="form-group">
+                        @Html.TextBoxFor(m => m.Phone, new { placeholder = "Telefon", @class = "form-control phone_us" })  
+                        @if (ViewData.ModelState["Phone"] != null && ViewData.ModelState["Phone"].Errors.Any())
+                        {
+                            <div class="alert alert-danger">
+                                @Html.ValidationMessage("Phone")
+                            </div>
+                        }
+                    </div>
+                    <div class="form-group">
+                        <button type="submit" style="margin-left:26%;" class="btn btn-rounded btn-inline btn-primary">Hesabımı Oluştur</button>
+                    </div>
+                }
+            </div>
+
+        </div>
+    </div>
+    <!--login-->
+</div>
+
+@section scripts{
+
+
+    <script>
+
+        var alertdiv = $("<div>");
+        alertdiv.text("Şifre ve tekrarı uyuşmuyor");
+        alertdiv.addClass("alert alert-danger");
+        $(".confirm-password").append(alertdiv)
+        alertdiv.hide();
+        $('#PasswordConfirm').on('blur', function controlDifference()
+        {
+            if ($(this).val() != $('#Password').val())
+                alertdiv.slideDown("fast");
+            else
+                alertdiv.slideUp("fast");
+        });
+
+        $("#create1_form").validate(
+            {
+                rules:
+                {
+                    FirstName: { required: true, maxlength: 50, minlength: 2 },
+                    LastName: { required: true, maxlength: 50, minlength: 2 },
+                    Password: { required: true, maxlength: 20, minlength: 8 },
+                    Phone: { required: true, maxlength: 14, minlength: 14 },
+                    Email: { required: true, maxlength: 50, minlength: 5 }
+                },
+                messages:
+                {
+                    FirstName: { required: "<div class=\"alert alert-danger\">İsim alanı boş bırakılamaz</div>", maxlength: "<div class=\"alert alert-danger\">50 karakterden uzun olamaz.</div>", minlength: "<div class=\"alert alert-danger\">Kullanıcı adı 2 karaterden uzun olmalıdır</div>" },
+                    LastName: { required: "<div class=\"alert alert-danger\" style=\"padding: 8px 5px;\">Soyad alanı boş bırakılamaz</div>", maxlength: "<div class=\"alert alert-danger\">50 karakterden uzun olamaz.</div>", minlength: "<div class=\"alert alert-danger\">Kullanıcı adı 2 karaterden uzun olmalıdır</div>" },
+                    Password: { required: "<div class=\"alert alert-danger\">Şifre alanı boş bırakılamaz</div>", maxlength: "<div class=\"alert alert-danger\">20 karakterden uzun olamaz</div>", minlength: "<div class=\"alert alert-danger\">Şifreniz en az 8 karakter olmalıdır.</div>" },
+                    Phone: { required: "<div class=\"alert alert-danger\">Telefon alanı boş bırakılamaz</div>", maxlength: "<div class=\"alert alert-danger\">10 karakterden uzun olamaz</div>", minlength: "<div class=\"alert alert-danger\">Telefon numarasını yanlış girdiniz.</div>" },
+                    Email: { required: "<div class=\"alert alert-danger\">Email alanı boş bırakılamaz</div>", maxlength: "<div class=\"alert alert-danger\">50 karakterden uzun olamaz</div>", minlength: "<div class=\"alert alert-danger\">Email 5 karakterden kısa olamaz.</div>" }
+
+                }
+            });
+
+        $(".phone_us").mask("(000) 000-0000");
+
+    </script>
+}

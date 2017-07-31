@@ -1,0 +1,29 @@
+﻿@using BilgeAdamGuney.Models
+@model List<CategoryListModel>
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<div class="table-size">
+    <h1 class="page-header">Kategori Listesi</h1>
+    @if (TempData["SuccessMessage"] != null)
+    {
+        <div class="alert alert-success">
+            @TempData["SuccessMessage"]
+        </div>
+    }
+    <div>
+        @Html.ActionLink("Yeni Kategori Ekle", "Create", "Category", new { @class = "margin btn btn-success" })
+        @Html.TextBox("Search", null, new { @placeholder = "Arama", @class = "search form-control" })
+        <div class="page-size-div">
+            <p class="page-size">Görüntüleme boyutu :</p>
+            @Html.DropDownList("PageSize", new SelectList(new Dictionary<string, int> { { "2", 2 }, { "10", 10 }, { "20", 20 }, { "100", 100 } }, "Key", "Value", 10), new { @class = "form-control", @style = "width:73px;" })
+        </div>
+    </div>
+    <div id="test_container">
+        @Html.Partial("_PartialTable", Model)
+    </div>
+
+</div>
+

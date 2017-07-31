@@ -1,0 +1,35 @@
+﻿@using BilgeAdamGuney.Models
+@model List<CategoryListModel>
+
+<table id="myTable" class="table table-hover">
+    <thead>
+        <tr id="myRow">
+            <th class="col-xm-3 col-md-3 sorting" id="department_name" data-sort-by="Name">Kategori Adı</th>
+            @*<th class="col-xm-6 col-md-6 sorting" data-sort-by="Description">Ürünler</th>*@
+            <th class="col-xm-3 col-md-3"></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+            {
+            <tr>
+                <td class="col-xm-3 col-md-3">@item.Name</td>
+                @*<td class="col-xm-6 col-md-6">
+                    @foreach (var product in item.Products)
+                    {
+                        string.Format("{0} ", product.Name);
+                    }
+
+                </td>*@
+                <td class="col-xm-3 col-md-3 text-right" style="padding-bottom:2px">
+                    @Html.ActionLink("Güncelle", "Edit", "Department", new { id = item.Id }, new { @class = "btn btn-warning" })
+                    @Html.ActionLink("Sil", "Delete", "Department", new { id = item.Id }, new
+               {
+                   @class = "btn btn-danger",
+                   onclick = "return confirm('Bu kaydı silmek istediğinize emin misiniz?');"
+               })
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

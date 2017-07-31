@@ -1,0 +1,99 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <title>Northwind</title>
+
+    <!-- Bootstrap -->
+    <link href="assets/Bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="assets/fontawesome/css/font-awesome.min.css" rel="stylesheet" />
+    <link href="assets/Site/css/main.css" rel="stylesheet" />
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+</head>
+<body>
+
+    <nav class="navbar navbar-default sidebar" role="navigation">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-sidebar-navbar-collapse-1">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+            </div>
+            <div class="collapse navbar-collapse" id="bs-sidebar-navbar-collapse-1">
+                <ul class="nav navbar-nav">
+                    <li class="active"><a href="index.html">Ana Sayfa<span style="font-size:16px;" class="pull-right hidden-xs showopacity glyphicon glyphicon-home"></span></a></li>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Kategori <span class="caret"></span><span style="font-size:16px;" class="pull-right hidden-xs showopacity fa fa-tags fa-3x"></span></a>
+                        <ul class="dropdown-menu forAnimate" role="menu">
+                            <li><a href="Category.html">Düzenleme</a></li>
+                            <li class="divider"></li>
+                            <li><a href="CategoryUpdate.html">Listeleme</a></li>
+
+                        </ul>
+                    </li>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Ürün <span class="caret"></span><span style="font-size:16px;" class="pull-right hidden-xs showopacity fa fa-product-hunt fa-4x"></span></a>
+                        <ul class="dropdown-menu forAnimate" role="menu">
+                            <li><a href="ProductUpdate.html">Düzenleme</a></li>
+                            <li class="divider"></li>
+                            <li><a href="#">Listeleme</a></li>
+
+                        </ul>
+                    </li>
+                    <li><a href="#">Sipariş<span style="font-size:16px;" class="pull-right hidden-xs showopacity fa fa-first-order fa-2x"></span></a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-offset-2 col-sm-8">
+                <h2>Kategori Liste Tablosu</h2>
+                <table class="table table-bordered">
+                    <thead>
+                        <tr>
+                            <th>Kategori Adı</th>
+                            <th>Açıklama</th>
+                            <th>Resim</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>John</td>
+                            <td>Doe</td>
+                            <td>john@example.com</td>
+                        </tr>
+                        <tr>
+                            <td>Mary</td>
+                            <td>Moe</td>
+                            <td>mary@example.com</td>
+                        </tr>
+                        <tr>
+                            <td>July</td>
+                            <td>Dooley</td>
+                            <td>july@example.com</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+ 
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="assets/Bootstrap/js/bootstrap.min.js"></script>
+    <script src="assets/Site/js/script.js"></script>
+</body>
+</html>

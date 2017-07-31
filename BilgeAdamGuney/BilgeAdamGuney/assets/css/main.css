@@ -1,0 +1,117 @@
+﻿body {
+}
+
+    body > div.header > div.heder-bottom {
+        background: steelblue;
+    }
+
+        body > div.header > div.heder-bottom > div > div > div.logo-nav-left > h1 > a {
+            color: white
+        }
+
+#bs-megadropdown-tabs > ul > li > a{
+    color:white;
+}
+body > div.header > div.header-top{
+    background:steelblue;
+}
+#example1 > div.core-slider_nav > div.core-slider_arrow.core-slider_arrow__right, #example1 > div.core-slider_nav > div.core-slider_arrow.core-slider_arrow__left {
+    background-color: steelblue;
+    opacity:0.72;
+}
+
+.ban-text2 {
+    background: steelblue;
+    opacity: 0.82;
+}
+.ban-text, .ban-text1 {
+    background: steelblue;
+    opacity: 0.72;
+}
+/*Giriş Yap Butonu*/
+body > div.content > div > div > div > form > input[type="submit"] {
+    margin: 0px 20%;
+    border-radius: 34px;
+    height: auto;
+    width: 200px;
+    background: #AF1D0D;
+}
+/*Giriş Yap Butonu Hover*/
+.form-w3agile input[type="submit"]:hover {
+    background: green;
+}
+/*Giriş Yapın H3*/
+.form-w3agile h3 {
+    color: steelblue;
+}
+/*footer*/
+.footer-w3l {
+    background: steelblue;
+}
+#create_form > div > label{
+    display:block !important;
+}
+
+#create1_form > div:nth-child(1), #create1_form > div:nth-child(2) {
+    display: inline-block !important;
+    width: 45% !important;
+    margin-top: 25px !important;
+}
+#create1_form > div:nth-child(2){
+    float:right;
+}
+
+/*admin panel create form container*/
+.create-form {
+    width: 300px;
+    display: inline-block;
+    margin-left: 60px;
+}
+
+.search {
+    margin: 2px 26px;
+    float: left;
+    width: 200px;
+    height: 32px;
+    font-size: .875rem;
+    -webkit-border-radius: 25rem;
+    border-radius: 1rem;
+    padding: 8px 10px;
+    line-height: 1.1;
+    box-shadow: 0px 2px 9px;
+}
+.table-size{
+    width:1000px;
+}
+    .table-size > h1, .table-size > h2, .create-form > h1, .create-form > h2 {
+        text-shadow: 2px 1px 30px;
+    }
+.page-size {
+    font-size: 14px;
+    float: left;
+    margin-right: 10px;
+    padding: 6px 0px;
+}
+
+.page-size-div {
+    float: right;
+    margin-top:2px;
+}
+.margin {
+    margin-bottom: 10px;
+    box-shadow: 0px 5px 18px 1px grey;
+    float: left;
+}
+body > div.content > div > div > div > div.col-md-3.single-grid1 > div > div.recent-right
+{
+    margin-top:0;
+}
+.recent-grids{
+    margin-bottom:25px;
+}
+.delivery {
+    margin-top: 1em;
+}
+.cart-item-info h3 {
+    font-size: 1.4em;
+}

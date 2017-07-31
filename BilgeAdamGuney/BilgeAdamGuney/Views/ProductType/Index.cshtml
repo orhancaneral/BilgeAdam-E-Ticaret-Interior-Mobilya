@@ -1,0 +1,36 @@
+﻿@using BilgeAdamGuney.DataAccess.Entities
+@model List<Product>
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="new-arrivals-w3agile">
+    <div class="container">
+        <h3 class="tittle1">@(Model.Count!=0?Model.First().ProductType.Name:string.Format("Bu kategoride ürün bulunmamaktadır."))</h3>
+        <div class="arrivals-grids">
+            @foreach (var item in Model)
+            {
+                <div class="col-md-3 arrival-grid simpleCart_shelfItem">
+                    <div class="grid-arr">
+                        <div class="grid-arrival">
+                            <figure>
+                                <a href="@Url.Action("Single", "Product", new {id=item.Id })">
+                                    <div class="grid-img">
+                                        <img src="@item.ImagePath" class="img-responsive" alt="">
+                                    </div>
+                                </a>
+                            </figure>
+                        </div>
+                        <div class="women">
+                            <h6><a href="@Url.Action("Single", "Product", new {id=item.Id })">@item.Name</a></h6>
+                            <p><em class="item_price">@item.Price TL</em></p>
+                            <a href="#" data-text="Add To Cart" data-product-id=@item.Id class="my-cart-b item_add sepete-ekle">Sepetime Ekle</a>
+                        </div>
+                    </div>
+                </div>
+            }
+            <div class="clearfix"></div>
+        </div>
+    </div>
+</div>

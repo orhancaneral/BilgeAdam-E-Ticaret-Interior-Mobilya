@@ -1,0 +1,115 @@
+﻿@using BilgeAdamGuney.Models
+@model OrderModel
+@{
+    ViewBag.Title = "Sipariş";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="content">
+    <!--login-->
+    <div class="login">
+        <div class="main-agileits">
+            <div class="form-w3agile form1">
+                <h2>Fatura Bilgileri</h2>   
+                @using (Html.BeginForm("Create", "Order", FormMethod.Post, new { @id = "create11_form" }))
+                {
+                    if (TempData["SuccessMessage"] != null)
+                    {
+                        <div class="alert alert-success form-group row">
+                            @TempData["SuccessMessage"]
+                        </div>
+                    }
+                    else if (TempData["ErrorMessage"] != null)
+                    {
+                        <div class="alert alert-danger form-group row">
+                            @TempData["ErrorMessage"]
+                        </div>
+                    }
+                    <div class="form-group">
+                        @Html.TextBoxFor(m=>m.Member.FirstName, new { @placeholder = "Adınız", @class = "form-control" })
+                        @if (ViewData.ModelState["FirstName"] != null && ViewData.ModelState["FirstName"].Errors.Any())
+                        {
+                            <div class="alert alert-danger">
+                                @Html.ValidationMessage("FirstName")
+                            </div>
+                        }
+                    </div>
+                    <div class="form-group">
+                        @Html.TextBoxFor(m => m.Member.LastName, new { @placeholder = "Soyadınız", @class = "form-control" })
+                        @if (ViewData.ModelState["LastName"] != null && ViewData.ModelState["LastName"].Errors.Any())
+                        {
+                            <div class="alert alert-danger">
+                                @Html.ValidationMessage("LastName")
+                            </div>
+                        }
+                    </div>
+                    <div class="form-group">
+                        @Html.TextBoxFor(m => m.Member.Phone, new { placeholder = "Telefon", @class = "form-control phone_us" })
+                        @if (ViewData.ModelState["Phone"] != null && ViewData.ModelState["Phone"].Errors.Any())
+                        {
+                            <div class="alert alert-danger">
+                                @Html.ValidationMessage("Phone")
+                            </div>
+                        }
+                    </div>
+                    <div class="form-group">
+                        @Html.DropDownListFor(m=>m.OrderAddressId, (SelectList)ViewBag.AddressList, new {@class = "form-control" })
+                        @if (ViewData.ModelState["OrderAddress"] != null && ViewData.ModelState["OrderAddress"].Errors.Any())
+                        {
+                            <div class="alert alert-danger">
+                                @Html.ValidationMessage("OrderAddress")
+                            </div>
+                        }
+                    </div>
+                    @Html.ActionLink("Adres Ekle","Create","Address",null,new { @class="btn btn-primary",@style="float:right;" })
+                    @Html.HiddenFor(m => m.MemberId)
+                    <div class="form-group">
+                        <button type="submit" style="margin-left:26%;" class="btn btn-rounded btn-inline btn-primary">Siparişi Tamamla</button>
+                    </div>
+                }
+            </div>
+
+        </div>
+    </div>
+    <!--login-->
+</div>
+
+@section scripts{
+
+
+    <script>
+
+        $(function ()
+        {
+            var timer;
+            window.addEventListener('load', function ()
+            {
+                $(".alert").slideDown("slow");
+                debugger;
+                clearTimeout(timer);
+                var ms = 3000; // milliseconds
+                timer = setTimeout(function ()
+                {
+                    debugger;
+                    $(".alert.alert-success").slideUp("slow");
+                }, ms);
+            });
+        });
+
+        var alertdiv = $("<div>");
+        alertdiv.text("Şifre ve tekrarı uyuşmuyor");
+        alertdiv.addClass("alert alert-danger");
+        $(".confirm-password").append(alertdiv)
+        alertdiv.hide();
+        $('#PasswordConfirm').on('blur', function controlDifference()
+        {
+            if ($(this).val() != $('#Password').val())
+                alertdiv.slideDown("fast");
+            else
+                alertdiv.slideUp("fast");
+        });
+
+        $(".phone_us").mask("(000) 000-0000");
+
+    </script>
+}

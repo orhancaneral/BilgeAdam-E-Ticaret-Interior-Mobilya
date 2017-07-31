@@ -1,0 +1,40 @@
+﻿
+@{
+    ViewBag.Title = "Login";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="content">
+    <!--login-->
+    <div class="login">
+        <div class="main-agileits">
+            <div class="form-w3agile">
+                <h3>Giriş Yapın</h3>
+                <form action="#" method="post">
+                    <div class="key">
+                        <i class="fa fa-envelope" aria-hidden="true"></i>
+                        <input type="text" value="Email" name="Email" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Email';}" required="">
+                        <div class="clearfix"></div>
+                    </div>
+                    <div class="key">
+                        <i class="fa fa-lock" aria-hidden="true"></i>
+                        <input type="password" value="Password" name="Password" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Password';}" required="">
+                        <div class="clearfix"></div>
+                    </div>
+                    <div class="form-group">
+                        <div style="display: inline-block;" class="checkbox float-left">
+                            <input type="checkbox" id="signed-in" name="RememberMe" value="true" />
+                            <label for="signed-in">Beni Hatırla</label>
+                        </div>
+                        <div style="display: inline;" class="float-right reset">
+                            <a style="float: right;padding-top: 10px;" href="@Url.Action("ForgotPassword")">Şifremi Unuttum</a>
+                        </div>
+                    </div>
+                    <input type="submit" value="Giriş Yap">
+                </form>
+            </div>
+         
+        </div>
+    </div>
+    <!--login-->
+</div>

@@ -1,0 +1,70 @@
+﻿@using BilgeAdamGuney.Models
+@model CategoryCreateModel
+@{
+    ViewBag.Title = "Create";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<h2 class="page-header">Yeni Kategori Ekleme</h2>
+@using (Html.BeginForm("Create", "Category", FormMethod.Post))
+{
+    if (TempData["SuccessMessage"] != null)
+    {
+        <div class="alert alert-success form-group row">
+            @TempData["SuccessMessage"]
+        </div>
+    }
+    else if (TempData["ErrorMessage"] != null)
+    {
+        <div class="alert alert-danger form-group row">
+            @TempData["ErrorMessage"]
+        </div>
+    }
+
+    <div class="form-group row">
+        @Html.LabelFor(m => m.Name, "Kategori Adı")
+        @Html.TextBoxFor(m => m.Name, new { @class = "form-control" })
+    </div>
+    <div class="form-group row">
+        <div class="col-xs-12 text-right">
+            <button type="reset" class="btn btn-rounded btn-inline btn-warning">Temizle</button>
+            <button type="submit" class="btn btn-rounded btn-inline btn-primary">Kaydet</button>
+        </div>
+    </div>
+}
+
+@section scripts{
+    <script>
+
+        $(function ()
+        {
+            var timer;
+            window.addEventListener('load', function ()
+            {
+                $(".alert").slideDown("slow");
+                debugger;
+                clearTimeout(timer);
+                var ms = 3000; // milliseconds
+                timer = setTimeout(function ()
+                {
+                    debugger;
+                    $(".alert.alert-success").slideUp("slow");
+                }, ms);
+            });
+        });
+
+        $("#create_form").validate(
+            {
+                rules:
+                {
+                    Name: { required: true, maxlength: 50, minlength: 2 }
+                },
+                messages:
+                {
+                    Name: { required: "<div class=\"alert alert-danger\">Kategori ismi alanı boş bırakılamaz</div>", maxlength: "<div class=\"alert alert-danger\">50 karakterden uzun olamaz.</div>", minlength: "<div class=\"alert alert-danger\">Kategori ismi 2 karaterden uzun olmalıdır</div>" }
+                }
+            });
+
+
+    </script>
+    }

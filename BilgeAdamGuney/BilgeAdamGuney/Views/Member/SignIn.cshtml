@@ -1,0 +1,58 @@
+﻿@using BilgeAdamGuney.Models
+@model MemberSignInModel
+@{
+    ViewBag.Title = "SignIn";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="content">
+    <!--login-->
+    <div class="login">
+        <div class="main-agileits">
+            <div class="form-w3agile">
+                <h3>Üye Girişi</h3>
+                @if (TempData["ResultMessage"] != null)
+                {
+                    <div class="alert alert-info">
+                        @TempData["ResultMessage"]
+                        @Html.ValidationSummary()
+                    </div>
+                }
+                @using (Html.BeginForm("SignIn", "Member", FormMethod.Post, new { @id = "form" }))
+                {
+                    <div class="form-group">
+                        @Html.TextBoxFor(m => m.Email, new { @placeholder = "Email", @class = "form-control" })
+                        @if (ViewData.ModelState["Email"] != null && ViewData.ModelState["Email"].Errors.Any())
+                        {
+                            <div class="alert alert-danger">
+                                @Html.ValidationMessage("Email")
+                            </div>
+                        }
+                    </div>
+                    <div class="form-group">
+                        @Html.PasswordFor(m => m.Password, new { @placeholder = "Şifre", @class = "form-control" })
+                        @if (ViewData.ModelState["Password"] != null && ViewData.ModelState["Password"].Errors.Any())
+                        {
+                            <div class="alert alert-danger">
+                                @Html.ValidationMessage("Password")
+                            </div>
+                        }
+                    </div>
+                    <div class="form-group">
+                        <div class="checkbox float-left" style="display:inline-block">
+                            <input type="checkbox" id="signed-in" name="RememberMe" value="true" />
+                            <label for="signed-in">Beni Hatırla</label>
+                        </div>
+                        <div class="float-right reset" style="display:inline-block;float:right;margin-top: 10px;">
+                            <a href="@Url.Action("ForgotPassword")">Şifremi Unuttum</a>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <button type="submit" style="margin-left:17%;width:250px;" class="btn btn-rounded btn-inline btn-success">Giriş Yap</button>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+    <!--login-->
+</div>

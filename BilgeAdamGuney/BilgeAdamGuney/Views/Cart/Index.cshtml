@@ -1,0 +1,83 @@
+﻿@using BilgeAdamGuney.Models
+@model CartModel
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="content">
+    <div class="cart-items">
+        <div class="container">
+            <a href="@Url.Action("Create","Order")" class="btn btn-rounded btn-inline btn-success"style="margin-bottom:20px;float:left;">Sipariş Ver</a>
+            <div class="delivery" style="display:inline">
+                <p style="margin-top: 7px;margin-left: 27px;">Toplam : @Model.TotalAmount TL</p>
+                <div class="clearfix"></div>
+            </div>
+            <h2>Sepetim (@Model.CartProducts.Count)</h2>
+            <script>
+                $(document).ready(function (c)
+                {
+                    $('.close1').on('click', function (c)
+                    {
+                        debugger;
+                        var cartHeader = $(this).parent();
+                       var productId=$(this).data("product-id");
+                       $.ajax({
+                               url: '@Url.Action("DeleteProduct", "Cart")',
+                               method: 'POST',
+                               data: { 'productId': productId },
+                               success: function (isDelete)
+                               {
+                                   debugger;
+                                   cartHeader.fadeOut('slow', function (c)
+                                   {
+                                       if (isDelete)
+                                           cartHeader.remove();
+                                   });
+                               },
+                               error: function (response)
+                               {
+                                   debugger;
+                                   alert("error : " + response.responseText);
+                               }
+                            });
+                    });
+                });
+            </script>
+            @foreach (var item in Model.CartProducts)
+            {
+                <div class="cart-header">
+                    <div data-product-id=@item.ProductId class="close1"> </div>
+                    <div class="cart-sec simpleCart_shelfItem">
+                        <div class="cart-item cyc">
+                            <img src="@item.Product.ImagePath" class="img-responsive" alt="">
+                        </div>
+                        <div class="cart-item-info">
+                            <h3><a href="#"> @item.Product.Name </a></h3>
+                            <div class="delivery">
+                                <p>Adet : @item.Quantity</p>
+                                <div class="clearfix"></div>
+                            </div>
+                            <div class="delivery">
+                                <p>Fiyat : @item.Product.Price &#8378;</p>
+                                <div class="clearfix"></div>
+                            </div>
+                            <div class="delivery">
+                                <p>Toplam : @item.TotalAmount &#8378;</p>
+                                <div class="clearfix"></div>
+                            </div>
+                        </div>
+                        <div class="clearfix"></div>
+
+                    </div>
+                </div>
+            }
+            <a href="@Url.Action("Create","Order")" class="btn btn-rounded btn-inline btn-success" style="margin-top:20px;float:left;">Sipariş Ver</a>
+            <div class="delivery" style="display:inline">
+                <p style="margin-top: 27px;margin-left: 27px;">Toplam : @Model.TotalAmount TL</p>
+                <div class="clearfix"></div>
+            </div>
+        </div>
+    </div>
+    <!-- checkout -->
+</div>

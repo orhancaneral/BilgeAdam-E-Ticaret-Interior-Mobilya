@@ -1,0 +1,53 @@
+﻿@using BilgeAdamGuney.Models
+@model List<OrderModel>
+@{
+    ViewBag.Title = "GetByMember";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="table-size" style="margin: 0 auto;">
+    <h1 class="page-header">Sipariş Listesi</h1>
+    @if (TempData["SuccessMessage"] != null)
+    {
+        <div class="alert alert-success">
+            @TempData["SuccessMessage"]
+        </div>
+    }
+    <div>
+        @Html.TextBox("Search", null, new { @placeholder = "Arama", @class = "search form-control" })
+        <div class="page-size-div">
+            <p class="page-size">Görüntüleme boyutu :</p>
+            @Html.DropDownList("PageSize", new SelectList(new Dictionary<string, int> { { "2", 2 }, { "10", 10 }, { "20", 20 }, { "100", 100 } }, "Key", "Value", 10), new { @class = "form-control", @style = "width:73px;" })
+        </div>
+    </div>
+    <div id="test_container">
+        <table id="myTable" class="table table-hover">
+            <thead>
+                <tr id="myRow">
+                    <th class="col-xm-3 col-md-3" sorting" id="department_name" data-sort-by="Name">Sipariş Tarihi</th>
+                    <th class="col-xm-1 col-md-2" sorting" id="department_name" data-sort-by="Name">Adres İsmi</th>
+                    <th class="col-xm-1 col-md-4" sorting" id="department_name" data-sort-by="Name">Açıklama</th>
+                    <th class="col-xm-1 col-md-4" sorting" id="department_name" data-sort-by="Name">İl / İlçe</th>
+                    <th class="col-xm-6 col-md-6 sorting" data-sort-by="Description">Ürünler</th>
+                    <th class="col-xm-3 col-md-3"></th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+            {
+                    <tr>
+                        <td class="col-xm-3 col-md-3">@item.OrderDate.Date</td>
+                        <td class="col-xm-1 col-md-2">@item.OrderAddress.Name</td>
+                        <td class="col-xm-1 col-md-4">@item.OrderAddress.Description... </td>
+                        <td class="col-xm-1 col-md-4">@(item.District.Name+" / "+item.City.Name) </td>
+
+                        <td class="col-xm-1 col-md-2">@Html.ActionLink("Ürünler","GetOrderProducts",new {id=item.Id },new { @class="btn btn-warning"})</td>
+
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+
+
